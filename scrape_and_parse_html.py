@@ -13,7 +13,7 @@ import time
 import pandas as pd
 
 # Initialize the Flask application
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 
 # Define the field mapping to standardize the labels
 field_mapping = {
