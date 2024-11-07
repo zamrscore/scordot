@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Scraped Successfully!</h1>
+        <p>Your data has been scraped and is ready for download.</p>
+
+        <!-- Form to download the Excel file -->
+        <form action="{{ url_for('download_excel') }}" method="post">
+            <input type="hidden" name="parsed_data" value="{{ parsed_data }}">
+            <button type="submit" class="btn">Download Excel File</button>
+        </form>
+    </div>
+</body>
+</html>

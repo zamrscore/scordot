@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firm Search and Data Extraction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Firm Search and Data Extraction</h1>
+
+    <!-- Form to search for the firm by name or number -->
+    <form action="{{ url_for('search_firm') }}" method="POST">
+        <label for="firm_name">Firm Name (optional):</label>
+        <input type="text" id="firm_name" name="firm_name" placeholder="Enter firm name">
+
+        <label for="firm_number">Firm Number (optional):</label>
+        <input type="text" id="firm_number" name="firm_number" placeholder="Enter firm number">
+
+        <button type="submit">Search and Extract Data</button>
+    </form>
+
+    <!-- Display the parsed data in a table format -->
+    {% if parsed_data %}
+        <h2>Extracted Data</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            {% for field, value in parsed_data.items() %}
+            <tr>
+                <td>{{ field }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Display download button after data is parsed -->
+        <a href="{{ url_for('download_html_report') }}" class="download-button">Download HTML Report</a>
+    {% endif %}
+
+</body>
+</html>
