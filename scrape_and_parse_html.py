@@ -11,6 +11,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+import chromedriver_binary  # This will ensure the path to ChromeDriver is available
+
+options = webdriver.ChromeOptions()
+options.add_argument("--no-sandbox")  # Required for Render
+options.add_argument("--headless")    # Run in headless mode on Render
+options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+
+driver = webdriver.Chrome(service=Service(chromedriver_binary.chromedriver_filename), options=options)
 
 # Initialize the Flask application
 app = Flask(__name__, template_folder='.')
